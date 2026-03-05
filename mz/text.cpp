@@ -6,6 +6,7 @@
 
 class Text {
     std::vector <std::string> words;
+    std::vector <bool> deleted;
     std::map <std::string, std::vector <int>> word_map;
 
     public:
@@ -15,6 +16,7 @@ class Text {
 
     Text& operator+ (std::string s) {
         words.push_back(s);
+        deleted.push_back(false);
         word_map[s].push_back(words.size() - 1);
         return *this;
     }
@@ -25,7 +27,7 @@ class Text {
 
             std::sort(vec.begin(), vec.end(), std::greater<int>());
             for (int index : vec) { // cleanup
-                words.erase(words.begin() + index);
+                words[words.begin() + index] = true;
             }
             word_map.erase(s);
         }
@@ -33,7 +35,10 @@ class Text {
     }
 
     std::string operator[] (int index) const {
-        return words[index];
+        if (word_map.find(index) != word_map.end()) {
+            return words[index];
+        }
+        return NULL;
     }
 
     Text& operator+ (const Text& t) {
@@ -41,6 +46,28 @@ class Text {
             (*this) + t[i];
         }
         return *this;
+    }
+
+
+    Text& operator= (const Text& t) {
+        int len = (*this).get_length();
+        for (int i = 0; i < len; i++) { // clear
+            (*this) - (*this)[i];
+        }
+
+        for (int i = 0; i < t.get_length(); i++) { // copy
+            (*this) + t[i];
+        }
+        return *this;
+    }
+
+
+    Text operator- (const Text& t) const {
+        Text result = *this;
+        for (int i = 0; i < t.get_length(); i++) {
+            result - t[i];
+        }
+        return result;
     }
 };
 
@@ -79,5 +106,14 @@ int main() {
         std::cout << A[i] << ' ';
     }
     std::cout << std::endl;
+
+    Text Res;
+    Res = A - T;
+    std::cout << "Res = A - T: ";
+    for (int i = 0; i < Res.get_length(); i++) {
+        std::cout << Res[i] << ' ';
+    }
+    std::cout << std::endl;
+
     return 0;
 }
