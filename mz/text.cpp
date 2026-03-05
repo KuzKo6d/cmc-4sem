@@ -36,8 +36,11 @@ class Text {
         return words[index];
     }
 
-    Text& operator+ (Text& t) {
-
+    Text& operator+ (const Text& t) {
+        for (int i = 0; i < t.get_length(); i++) {
+            (*this) + t[i];
+        }
+        return *this;
     }
 };
 
@@ -47,17 +50,34 @@ int main() {
     T + "Miumiu";
     T + "aaa";
     T + "Miumiu";
+    // S = T - Q - W;
+    std::cout << "T: ";
     for (int i = 0; i < T.get_length(); i++) {
         std::cout << T[i] << ' ';
     }
     std::cout << std::endl;
 
     T - "Miumiu";
-
+    std::cout << "T after -: ";
     for (int i = 0; i < T.get_length(); i++) {
         std::cout << T[i] << ' ';
     }
     std::cout << std::endl;
 
+    Text A;
+    A + "aboba";
+    A + "pupupu";
+    std::cout << "A: ";
+    for (int i = 0; i < A.get_length(); i++) {
+        std::cout << A[i] << ' ';
+    }
+    std::cout << std::endl;
+
+    A + T;
+    std::cout << "A + T: ";
+    for (int i = 0; i < A.get_length(); i++) {
+        std::cout << A[i] << ' ';
+    }
+    std::cout << std::endl;
     return 0;
 }
