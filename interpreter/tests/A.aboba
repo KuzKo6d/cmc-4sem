@@ -1,0 +1,17 @@
+program
+{
+    int i;
+
+    for i = 1 step 1 until 5 do
+    {
+        if (i == 3)
+            continue;
+
+        write(i);
+    }
+
+    case (2) of
+        1 : write("one");
+        2 : write("two");
+    end;
+}
