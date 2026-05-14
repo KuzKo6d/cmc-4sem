@@ -1,0 +1,8 @@
+program
+{
+    int x = 1;
+
+    case (x) of
+        1 : write(1);
+        2 : 
+}

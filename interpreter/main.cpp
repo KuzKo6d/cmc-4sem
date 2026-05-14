@@ -37,8 +37,8 @@ int main(int argc, char* argv[]) {
         auto program = parser.parseProgram();
 
         // Semantic analysis
-        SemanticAnalyzer semanticAnalyzer;
-        semanticAnalyzer.analyze(program.get());
+        // SemanticAnalyzer semanticAnalyzer;
+        // semanticAnalyzer.analyze(program.get());
 
         // Interpretation
         Interpreter interpreter;

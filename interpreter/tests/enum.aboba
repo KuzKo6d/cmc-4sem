@@ -1,0 +1,9 @@
+program
+{
+    int i;
+
+    for i = 1 step 2 until 7 do
+    {
+        write(i);
+    }
+}

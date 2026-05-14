@@ -1,0 +1,7 @@
+program
+{
+    int a = 5;
+    int b = 0;
+
+    write(a / b);
+}

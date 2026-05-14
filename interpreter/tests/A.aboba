@@ -9,7 +9,7 @@ program
 
         write(i);
     }
-
+/* miumiu */
     case (2) of
         1 : write("one");
         2 : write("two");

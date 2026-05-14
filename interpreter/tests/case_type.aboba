@@ -1,0 +1,8 @@
+program
+{
+    string s = "abc";
+
+    case (s) of
+        "abc" : write(1);
+    end;
+}
